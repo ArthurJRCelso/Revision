@@ -10,12 +10,14 @@
 
 body {
     font-size: 1.6rem;
+    font-family: "Mulish", sans-serif;
 }
 
 .container {
     max-width: 43rem;
     display: grid;
     grid-template-rows: max-content 1fr max-content;
+    margin: auto;
 }
 
 header {
@@ -58,4 +60,114 @@ header input {
 header input::placeholder {
     color: white;
     font-size: 1.6rem;
+    font-family: "Mulish", sans-serif;
+    font-weight: 600;
+    line-height: 6.4rem;
 }
+
+.container1 h1 {
+    margin: 3.1rem 0 .8rem;
+    font-size: 2.4rem;
+    font-weight: bold;
+}
+
+.container1 .goodNo {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 3.1rem;
+}
+
+.container1 .goodNo button {
+    border: none;
+    background-color: white;
+}
+
+main p {
+    font-size: 1.6rem;
+    font-weight: 400;
+    width: 38.2rem;
+    line-height: 160%;
+    margin-bottom: 3.4rem;
+}
+
+.container2 h2 {
+    font-size: 2.4rem;
+    font-weight: bold;
+    margin-bottom: 3.2rem;
+}
+
+.container2 .wrapper {
+    display: flex;
+    gap: 1.6rem;
+}
+
+.wrapper img {
+    width: 15.1rem;
+    height: 8.4rem;
+}
+
+.wrapper h3 {
+    font-size: 1.8rem;
+}
+
+.wrapper p{
+    font-size: 1.4rem;
+    width: 21.5rem;
+    font-weight: 400;
+    line-height: 160%;
+}
+
+footer {
+    height: 6.4rem;
+    background-color: #387E96;
+    color: white;
+
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+@media (min-width: 1300px) {
+    .container {
+        margin: 0;
+    }
+
+    header {
+        width: 100vw;
+    }
+
+    main {
+        display: flex;
+        gap: 3.4rem;
+        margin-top: 4.4rem;
+        justify-content: center;
+    }
+
+    .container1 {
+        width: 80rem; 
+    }
+
+    .cat {
+        width: 80rem;
+        height: 40.5rem;
+    }
+
+    .container1 p {
+        width: 80rem;
+    }
+
+    .full {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .goodNo {
+        margin-top: 3.1rem;
+    }
+
+}
+
+
