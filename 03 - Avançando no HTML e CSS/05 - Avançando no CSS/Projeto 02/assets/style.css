@@ -1,0 +1,61 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+.container {
+    max-width: 43rem;
+    display: grid;
+    grid-template-rows: max-content 1fr max-content;
+}
+
+header {
+    height: 7.2rem;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 1.6rem 2.8rem;
+
+    background-color: #065E7C;
+}
+
+header .avatar {
+    width: 4.2rem;
+    height: 4.2rem;
+    border-radius: 50%;
+}
+
+header label {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+}
+
+header form {
+    flex: 1;
+}
+
+header input {
+    width: 100%;
+    padding: 1.2rem 1.4rem;
+
+    background-color: #387E96;
+    border: none;
+    border-radius: .4rem;
+    display: flex;
+}
+
+header input::placeholder {
+    color: white;
+    font-size: 1.6rem;
+}
