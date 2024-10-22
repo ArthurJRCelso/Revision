@@ -1,0 +1,81 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: "Mulish", serif;
+}
+
+.container {
+    width: 43rem;
+    margin: auto;
+}
+
+header {
+    padding-bottom: 9.3rem;
+}
+
+header > img {
+    width: 36.4rem;
+    height: 37rem;
+}
+
+header .title {
+    text-align: center;
+    margin-top: 1.7rem;
+}
+
+header h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    color: #B52184;
+}
+
+header p {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #312D64;
+
+    margin-bottom: 3.5rem;
+}
+
+header button {
+    border: none;
+    background-color: white;
+}
+
+main {
+    background-image: linear-gradient(#343193, #302C63);
+    padding: 5.3rem 3.9rem;
+}
+
+main .planets {
+    display: grid;
+    gap: 4.9rem;
+}
+
+main .planet-wrapper {
+    background-color: white;
+    padding: 2.6rem;
+    border-radius: 2rem;
+}
+
+main .planet-wrapper h2 {
+    margin: 3.3rem 0 2rem;
+    font-size: 2.9rem;
+    font-weight: 800;
+    color: #B52184;
+}
+
+main .planet-wrapper p {
+    color: #312D64;
+    font-weight: 600;
+}
+
