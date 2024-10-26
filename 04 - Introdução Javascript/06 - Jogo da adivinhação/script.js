@@ -7,4 +7,8 @@ while (Number(result) != randomNumber) {
     xAttempts++
 }
 
-alert("Parabéns! Você advinhou o número em " + xAttempts + " tentativas")
+if (xAttempts == 1) {
+    alert("Parabéns! Você advinhou o número em " + xAttempts + " tentativa.")
+} else {
+    alert(`Parabéns! Você advinhou o número em ${xAttempts} tentativas.`)
+}
