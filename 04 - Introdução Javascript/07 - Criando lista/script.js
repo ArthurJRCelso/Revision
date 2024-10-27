@@ -2,10 +2,6 @@ let option
 
 let items = []
 
-switch (option) {
-
-}
-
 while (option != 3) {
 
     option = Number(prompt(`
