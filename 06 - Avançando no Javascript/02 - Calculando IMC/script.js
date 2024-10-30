@@ -1,37 +1,45 @@
-import { Modal } from './modal.js'
-import { AlertError } from './alert-error.js'
-import { calculateIMC, notNumber } from './utils.js'
-
 const form = document.querySelector('form')
 const inputWeight = document.querySelector('#weight')
 const inputHeight = document.querySelector('#height')
+const messageIMC = document.querySelector('.modal-wrapper .title span')
+const modal = document.querySelector('.modal-wrapper')
+const btnClose = document.querySelector('.modal-wrapper button.close')
+const modalError = document.querySelector('.alert-error')
 
-inputWeight.oninput = () => AlertError.close()
-inputHeight.oninput = () => AlertError.close()
+document.addEventListener('keydown', handleKey)
+inputWeight.oninput = () => modalError.classList.remove('open')
+inputHeight.oninput = () => modalError.classList.remove('open')
 
-form.onsubmit = event => {
+form.onsubmit = (event) => {
     event.preventDefault()
 
-    const weight = inputWeight.value
-    const height = inputHeight.value
+    let weight = inputWeight.value
+    let height = inputHeight.value
 
-    const weightOrHeightIsNotANumber = notNumber(weight) || notNumber(height)
+    const notANumber = notNumber(height) || notNumber(weight)
 
-    if (weightOrHeightIsNotANumber) {
-        AlertError.open()
+    if (notANumber) {
+        modalError.classList.add('open')
         return
     }
 
-    AlertError.close()
-
-    const result = calculateIMC(weight, height)
-    displayResultMessage(result)
+    let IMC = calculateIMC(weight, height)
+    let message = `Seu IMC é de ${IMC}`
+    messageIMC.innerHTML = message
+    modal.classList.add('open')
 }
 
-function displayResultMessage(result) {
-    const message = `Seu IMC é de ${result}`
-    
-    Modal.message.innerHTML = message
-    Modal.open()    
+function handleKey(event) {
+    if (event.key == 'Escape') {
+        modal.classList.remove('open')
+    }
 }
 
+function notNumber(value) {
+    return isNaN(value) || value == ''
+}
+
+btnClose.onclick = () => modal.classList.remove('open')
+function calculateIMC(weight, height) {
+    return (weight / ((height / 100) ** 2)).toFixed(2)
+}
