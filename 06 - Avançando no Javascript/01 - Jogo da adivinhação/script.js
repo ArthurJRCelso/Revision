@@ -7,41 +7,37 @@ let random = Math.round(Math.random() * 10)
 let xAttempts = 1
 
 btnTry.addEventListener('click', handleTry)
-btnReset.addEventListener('click', handleReset) 
-document.addEventListener('keydown', handleKey)
+btnReset.addEventListener('click', handleReset)
+document.addEventListener('keydown', handleEnter)
 
 function handleTry(event) {
-    event.preventDefault(event)
-    
-    if (input.value == "" || input.value < 1 || input.value > 10) {
-        alert("Valor inválido!")
+    event.preventDefault()
+
+    if (input.value == '' || input.value < 1 || input.value > 10) {
+        alert('Valor inválido! Tente novamente!')
         return
     }
-    
-    if(Number(input.value) == random) {
-        handleToggle()
-        screen2.querySelector("h2").innerHTML = `Você acertou em ${xAttempts}`
+
+    if (input.value == random) {
+        screen2.classList.remove('hide')
+        screen1.classList.add('hide')
+        screen2.querySelector('h2').innerHTML = `Você acertou em ${xAttempts}`
     }
-    
-    input.value = ""
+
+    input.value = ''
     xAttempts++
 }
 
-function handleReset() {
-        handleToggle()
-        random = Math.round(Math.random() * 10)
-        xAttempts = 1
-}
-
-function handleKey(e) {
-    if (e.key == "Enter" && screen1.classList.contains("hide")) {
-        handleToggle()
-        random = Math.round(Math.random() * 10)
-        xAttempts = 1
+function handleEnter(e) {
+    if (e.key == 'Enter' && screen1.classList.contains('hide')) {
+        handleReset()
     }
 }
 
-function handleToggle() {
-    screen1.classList.toggle("hide")
-    screen2.classList.toggle("hide")
+function handleReset() {
+    screen1.classList.remove('hide')
+    screen2.classList.add('hide')
+    random = Math.round(Math.random() * 10)
+    input.value = ''
+    xAttempts = 1
 }
