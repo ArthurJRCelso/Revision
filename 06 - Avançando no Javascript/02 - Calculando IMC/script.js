@@ -6,40 +6,40 @@ const modal = document.querySelector('.modal-wrapper')
 const btnClose = document.querySelector('.modal-wrapper button.close')
 const modalError = document.querySelector('.alert-error')
 
-document.addEventListener('keydown', handleKey)
-inputWeight.oninput = () => modalError.classList.remove('open')
+document.addEventListener('keydown', handleEsc)
+btnClose.onclick = () => modal.classList.remove('open')
 inputHeight.oninput = () => modalError.classList.remove('open')
+inputWeight.oninput = () => modalError.classList.remove('open')
+
 
 form.onsubmit = (event) => {
     event.preventDefault()
 
-    let weight = inputWeight.value
-    let height = inputHeight.value
+    const weight = inputWeight.value
+    const height = inputHeight.value
+    
+    const valueNotANumber = notNumber(weight) || notNumber(height)
 
-    const notANumber = notNumber(height) || notNumber(weight)
-
-    if (notANumber) {
+    if (valueNotANumber) {
         modalError.classList.add('open')
         return
     }
 
-    let IMC = calculateIMC(weight, height)
-    let message = `Seu IMC é de ${IMC}`
+    const IMC = calculateIMC(weight, height)
+    const message = `Seu IMC é de ${IMC}`
     messageIMC.innerHTML = message
     modal.classList.add('open')
-}
-
-function handleKey(event) {
-    if (event.key == 'Escape') {
-        modal.classList.remove('open')
-    }
-}
+}   
 
 function notNumber(value) {
     return isNaN(value) || value == ''
 }
 
-btnClose.onclick = () => modal.classList.remove('open')
+function handleEsc(e) {
+    if (e.key == "Escape") {
+        modal.classList.remove('open')
+    }
+}
 
 function calculateIMC(weight, height) {
     return (weight / ((height / 100) ** 2)).toFixed(2)
