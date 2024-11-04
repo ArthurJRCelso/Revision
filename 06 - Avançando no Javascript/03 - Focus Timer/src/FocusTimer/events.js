@@ -29,5 +29,6 @@ export function setMinutes() {
         state.seconds = 0
 
         updateDisplay()
+        el.minutes.removeAttribute('contenteditable')
     })
 }
