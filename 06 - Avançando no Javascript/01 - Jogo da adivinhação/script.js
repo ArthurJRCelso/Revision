@@ -13,31 +13,38 @@ document.addEventListener('keydown', handleEnter)
 function handleTry(event) {
     event.preventDefault()
 
-    if (input.value == '' || input.value < 1 || input.value > 10) {
-        alert('Valor inválido! Tente novamente!')
+    if (input.value < 0 || input.value > 10 || input.value == '') {
+        alert('Valor inválido!')
         return
     }
 
     if (input.value == random) {
-        screen2.classList.remove('hide')
-        screen1.classList.add('hide')
-        screen2.querySelector('h2').innerHTML = `Você acertou em ${xAttempts}`
+        screen1.classList.toggle('hide')
+        screen2.classList.toggle('hide')
+
+        let message = screen2.querySelector('h2')
+        message.innerHTML = `Você acertou em ${xAttempts} tentativas`
     }
 
-    input.value = ''
     xAttempts++
 }
 
+function handleReset() {
+    screen1.classList.toggle('hide')
+    screen2.classList.toggle('hide')
+    xAttempts = 1
+    random = Math.round(Math.random() * 10)
+    input.value = ''
+}
+
 function handleEnter(e) {
-    if (e.key == 'Enter' && screen1.classList.contains('hide')) {
+    if (screen1.classList.contains('hide') && e.key == 'Enter') {
         handleReset()
     }
 }
 
-function handleReset() {
-    screen1.classList.remove('hide')
-    screen2.classList.add('hide')
-    random = Math.round(Math.random() * 10)
-    input.value = ''
-    xAttempts = 1
-}
+
+
+
+
+
