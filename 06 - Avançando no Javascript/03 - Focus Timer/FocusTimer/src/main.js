@@ -18,8 +18,6 @@ function start(minutes, seconds) {
     registerControls()
 }
 
-
-
 const actions = {
     toggleRunning() {
         console.log('opa')
