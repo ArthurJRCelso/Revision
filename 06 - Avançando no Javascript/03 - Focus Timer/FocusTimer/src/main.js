@@ -2,6 +2,11 @@ let darkMode = true
 const buttonMode = document.querySelector('#toggle-mode')
 const controls = document.querySelector('#controls')
 
+const el = {
+    minutes: document.getElementById('minutes'),
+    seconds: document.getElementById('seconds')
+}
+
 let state = {
     minutes: 25,
     seconds: 0,
@@ -9,22 +14,45 @@ let state = {
     isMute: true,
 }
 
+function countdown() {
+    if(!state.isRunning) {
+        return
+    }
+
+    setTimeout(() => countdown(), 1000)
+}
+
+function updateDisplay(minutes, seconds) {
+    minutes = minutes ?? state.minutes
+    seconds = seconds ?? state.seconds
+
+    el.minutes.textContent = String(minutes).padStart(2, '0')
+    el.seconds.textContent = String(seconds).padStart(2, '0')
+}
+
+
 start(0, 6)
 
 function start(minutes, seconds) {
     state.minutes = minutes
     state.seconds = seconds
 
+    updateDisplay()
+
     registerControls()
 }
 
 const actions = {
     toggleRunning() {
-        console.log('opa')
+        state.isRunning = document.documentElement.classList.toggle('running')
+
+        countdown()
     },
     
     reset() {
-    
+        state.isRunning = false
+        state.isRunning = document.documentElement.classList.remove('running')
+
     },
     
     set() {
@@ -32,7 +60,7 @@ const actions = {
     },
     
     toggleMusic() {
-        
+        state.isMute = document.documentElement.classList.toggle('music-on')
     }
 }
 
