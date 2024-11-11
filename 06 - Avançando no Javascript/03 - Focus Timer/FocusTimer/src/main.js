@@ -19,6 +19,23 @@ function countdown() {
         return
     }
 
+    let minutes = Number(el.minutes.textContent)
+    let seconds = Number(el.seconds.textContent)
+
+    seconds--
+
+    if(seconds < 0) {
+        seconds = 59
+        minutes--
+    }
+
+    if(minutes < 0) {
+        actions.reset()
+        return
+    }
+
+    updateDisplay(minutes, seconds)
+
     setTimeout(() => countdown(), 1000)
 }
 
@@ -40,6 +57,8 @@ function start(minutes, seconds) {
     updateDisplay()
 
     registerControls()
+
+    setMinutes()
 }
 
 const actions = {
@@ -52,16 +71,37 @@ const actions = {
     reset() {
         state.isRunning = false
         state.isRunning = document.documentElement.classList.remove('running')
+        updateDisplay()
 
     },
     
     set() {
-    
+        el.minutes.setAttribute('contenteditable', true)
+        el.minutes.focus()
     },
     
     toggleMusic() {
         state.isMute = document.documentElement.classList.toggle('music-on')
     }
+}
+
+function setMinutes() {
+    el.minutes.addEventListener('focus', () => {
+        el.minutes.textContent = ''
+    })
+
+    el.minutes.onkeypress = (event) => /\d/.test(event.key)
+
+    el.minutes.addEventListener('blur', (event) => {
+        let time = event.currentTarget.textContent
+        time = time > 60 ? 60 : time
+
+        state.minutes = time
+        state.seconds = 0
+
+        updateDisplay()
+        el.minutes.removeAttribute('contenteditable')
+    })
 }
 
 function registerControls() {
