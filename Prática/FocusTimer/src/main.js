@@ -2,6 +2,12 @@ let darkMode = true
 const buttonMode = document.querySelector('#toggle-mode')
 const controls = document.querySelector('#controls')
 
+const sounds = {
+    buttonPressAudio: new Audio('./assets/button-press.wav'),
+    kitchenTimer: new Audio('./assets/kichen-timer.mp3'),
+    bgAudio: new Audio('./assets/bg-audio.mp3')
+}
+
 const el = {
     minutes: document.getElementById('minutes'),
     seconds: document.getElementById('seconds')
@@ -12,9 +18,13 @@ let state = {
     seconds: 0,
     isRunning: false,
     isMute: true,
+    countdownID: null
 }
 
 function countdown() {
+
+    clearTimeout(state.countdownID)
+
     if(!state.isRunning) {
         return
     }
@@ -31,12 +41,13 @@ function countdown() {
 
     if(minutes < 0) {
         actions.reset()
+        sounds.kitchenTimer.play()
         return
     }
 
     updateDisplay(minutes, seconds)
 
-    setTimeout(() => countdown(), 1000)
+    state.countdownID = setTimeout(() => countdown(), 1000)
 }
 
 function updateDisplay(minutes, seconds) {
@@ -66,6 +77,7 @@ const actions = {
         state.isRunning = document.documentElement.classList.toggle('running')
 
         countdown()
+        sounds.buttonPressAudio.play()
     },
     
     reset() {
@@ -73,6 +85,7 @@ const actions = {
         state.isRunning = document.documentElement.classList.remove('running')
         updateDisplay()
 
+        sounds.buttonPressAudio.play()
     },
     
     set() {
@@ -82,6 +95,14 @@ const actions = {
     
     toggleMusic() {
         state.isMute = document.documentElement.classList.toggle('music-on')
+
+        if(state.isMute) {
+            sounds.bgAudio.play()
+            return
+        }
+
+        sounds.bgAudio.pause()
+        bgAudio.loop = true
     }
 }
 
@@ -124,3 +145,4 @@ buttonMode.addEventListener('click', (event) => {
 
     darkMode = !darkMode
 })
+
