@@ -3,6 +3,9 @@ import * as el from "./elements.js"
 import { reset } from "./actions.js"
 
 export function countdown() {
+
+    clearTimeout(state.setTimeoutID)
+
     if(!state.isRunning) {
         return
     }
@@ -22,10 +25,9 @@ export function countdown() {
         return
     }
 
-
     updateDisplay(minutes, seconds)
 
-    setTimeout(() => countdown(), 1000)
+    state.setTimeoutID = setTimeout(() => countdown(), 1000)
 }
 
 export function updateDisplay(minutes, seconds) {
