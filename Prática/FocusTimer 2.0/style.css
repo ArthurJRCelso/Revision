@@ -80,6 +80,10 @@ main {
     background-color: #02799D;
 }
 
+.active {
+    background-color: #02799D;
+}
+
 #environment button {
     background-repeat: no-repeat;
     background-position: center;
