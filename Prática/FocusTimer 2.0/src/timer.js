@@ -1,8 +1,11 @@
+import { reset } from './actions.js'
 import * as el from './elements.js'
-import { reset } from './events.js'
 import state from './state.js'
 
 export function countdown() {
+
+    clearTimeout(state.timeOutID)
+
     if(!state.isRunning) {
         return
     }
@@ -11,7 +14,7 @@ export function countdown() {
     let seconds = Number(el.seconds.textContent)
 
     seconds--
-    
+
     if(seconds < 0) {
         seconds = 59
         minutes--
@@ -24,7 +27,7 @@ export function countdown() {
 
     updateDisplay(minutes, seconds)
 
-    setTimeout(() => countdown(), 1000)
+    state.timeOutID = setTimeout(() => countdown(), 1000)
 }
 
 export function updateDisplay(minutes, seconds) {

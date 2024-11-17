@@ -1,39 +1,22 @@
-import { controls } from "./elements.js";
-import * as actions from './events.js'
-import * as el from './elements.js'
 import state from "./state.js";
-import { updateDisplay } from "./timer.js";
+import { countdown, updateDisplay } from "./timer.js";
+import * as el from './elements.js'
 
-export function registerControls() {
-    controls.addEventListener('click', (event) => {
+export function toggleRunning() {
+    state.isRunning = document.documentElement.classList.toggle('running')
 
-        const action = event.target.dataset.action
-
-        if(typeof actions[action] != 'function') {
-            return
-        }
-
-        actions[action]()
-    })
+    countdown()
 }
 
-export function setAttribute() {
-   el.minutes.addEventListener('focus', () => {
-    el.minutes.textContent = ''
-   })
+export function set() {
+    el.minutes.setAttribute('contenteditable', true)
+    el.minutes.focus()
+}
 
-   el.minutes.onkeypress = (event) => /\d/.test(event.key)
-
-   el.minutes.addEventListener('blur', (event) => {
-
-    let time = event.currentTarget.textContent
-
-    time = time > 60 ? 60 : time
-
-    state.minutes = time
-    state.seconds = 0
+export function reset() {
+    state.isRunning = false
+    state.isRunning = document.documentElement.classList.remove('running')
 
     updateDisplay()
-    el.minutes.removeAttribute('contenteditable')
-   })
 }
+
