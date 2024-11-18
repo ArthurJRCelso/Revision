@@ -1,12 +1,13 @@
-import { Router } from "./router.js";
+import { Router } from './router.js'
 
-const router = new Router()
+const route = new Router()
 
-router.add("/", "/pages/home.html")
-router.add("/about", "/pages/about.html")
-router.add("/contact", "/pages/contact.html")
-router.add(404, "/pages/404.html")
+route.add("/", "/pages/home.html")
+route.add("/about", "/pages/about.html")
+route.add("/contact", "/pages/contact.html")
+route.add(404, "/pages/404.html")
 
-router.handle()
+route.handle()
 
-window.route = () => router.route()
+window.onpopstate = () => route.handle()
+window.route = () => route.route()

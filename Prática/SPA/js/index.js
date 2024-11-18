@@ -11,4 +11,3 @@ window.onpopstate = () => route.handle()
 window.route = () => route.route()
 
 
-console.log(route.routes)
