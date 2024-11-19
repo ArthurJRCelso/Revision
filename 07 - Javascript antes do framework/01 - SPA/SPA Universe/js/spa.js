@@ -1,5 +1,19 @@
 export class Router {
 
+    listClass = {
+        '/home': {
+            routeImage: 'home'
+        },
+
+        '/universe': {
+            routeImage: 'universe'
+        },
+
+        '/explorer': {
+            routeImage: 'explore'
+        }
+    }
+
     Routes = {}
 
     add(routePage, page) {
@@ -25,13 +39,14 @@ export class Router {
         .then(html => {
             document.querySelector('#app').innerHTML = html
         })
-        
-        if(pathname == '/universe') {
-            document.documentElement.classList.remove('home')
-            document.documentElement.classList.add('universe')
-        } else if(pathname == '/explorer') {
-            document.documentElement.classList.remove('universe')
-            document.documentElement.classList.add('explore')
+        this.toggleImage(pathname)
+    }
+
+    toggleImage(page) {
+        const body = document.querySelector('.body')
+        const classNames = this.listClass[page]
+        if(classNames) {
+            body.className = classNames.routeImage
         }
     }
 }

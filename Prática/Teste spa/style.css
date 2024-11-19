@@ -1,0 +1,15 @@
+body.home {
+    background-color: red;
+}
+
+body.help {
+    background-color: blue;
+}
+
+body.contact {
+    background-color: yellow;
+}
+
+body.about {
+    background-color: green;
+}

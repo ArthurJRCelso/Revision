@@ -14,7 +14,7 @@ body {
     padding: 0 3%;
 }
 
-html.home {
+body.home {
     background-image: url(assets/mountains-universe-1\ 1.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -22,7 +22,7 @@ html.home {
     height: 100vh;
 }
 
-html.universe {
+body.universe {
     background-image: url(assets/mountains-universe02.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -30,7 +30,7 @@ html.universe {
     height: 100vh;
 }
 
-html.explore {
+body.explore {
     background-image: url(assets/mountains-universe-3.jpg);
     background-repeat: no-repeat;
     background-size: cover;
