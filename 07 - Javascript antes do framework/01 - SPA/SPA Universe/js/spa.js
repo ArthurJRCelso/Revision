@@ -34,8 +34,4 @@ export class Router {
             document.documentElement.classList.add('explore')
         }
     }
-
-    handleImage() {
-        
-    }
 }
