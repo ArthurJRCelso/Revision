@@ -1,5 +1,4 @@
 let number = prompt("Qual número estou pensando?")
-let random = Math.round(Math.random() * 10)
 let xAttempts = 1
 
 while (number != random) {

@@ -1,8 +1,7 @@
-let lista = []
+let items = []
 
-for (let index = 0; index < 10; index++) {
-    
-    lista[index] = prompt("Digite um item:")
+for(let item = 0; item < 10; item++) {
+    items[item] = prompt('Digite um item:')
 }
 
-alert(lista)
+alert(items)
