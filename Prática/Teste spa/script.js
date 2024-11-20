@@ -2,7 +2,6 @@ const buttonsLinks = document.querySelectorAll('a')
 
 buttonsLinks.forEach(button => {
     button.addEventListener('click', route)
-    
 })
 
 const Routes = {
@@ -51,3 +50,4 @@ function toggleLink(data) {
 }
 
 handle()
+window.onpopstate = () => handle()
