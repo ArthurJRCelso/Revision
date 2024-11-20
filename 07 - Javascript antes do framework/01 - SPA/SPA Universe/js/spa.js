@@ -21,7 +21,6 @@ export class Router {
     }
 
     route(event) {
-        event = event || event.window
         event.preventDefault()
 
         window.history.pushState({}, "", event.target.href)
@@ -33,20 +32,20 @@ export class Router {
     handle() {
         const { pathname } = window.location
         const page = this.Routes[pathname] || this.Routes[404]
-        console.log(pathname)
-        fetch(page)
-        .then(data => data.text())
-        .then(html => {
-            document.querySelector('#app').innerHTML = html
-        })
-        this.toggleImage(pathname)
-    }
 
-    toggleImage(page) {
-        const body = document.querySelector('.body')
-        const classNames = this.listClass[page]
-        if(classNames) {
-            body.className = classNames.routeImage
+        fetch(page)
+            .then(data => data.text())
+            .then(html => {
+                document.querySelector('#app').innerHTML = html
+            })
+
+            this.toggleImage(pathname)
+        
+        }
+
+        toggleImage(image) {
+            const body = document.querySelector('.body')
+            const routeImg = this.listClass[image]
+            body.className = routeImg.routeImage
         }
     }
-}

@@ -39,11 +39,9 @@ const bodyElement = document.getElementById('body')
 const contentElement = document.querySelector('#app')
 
 function navigateTo(route) {
-    const routesData = routes[route]
-    if(routesData) {
-        contentElement.innerHTML = routesData.content
-        bodyElement.className = routesData.className
-    }
+   const routesData = routes[route]
+   contentElement.innerHTML = routesData.content
+   bodyElement.className = routesData.className
 }
 
 function route(event) {
@@ -59,5 +57,7 @@ function handle() {
     let { pathname } = window.location
     navigateTo(pathname)
 }
+
+window.onpopstate = () => handle()
 
 
