@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praticando</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script type="module" src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" onclick="route()">Início</a>
+            <a href="/buy" onclick="route()">Comprar</a>
+            <a href="/imc" onclick="route()">Calcular IMC</a>
+            <a href="/contact" onclick="route()">Contato</a>
+        </nav>
+    </header>
+
+    <div class="line"></div>
+
+    <div id="app"></div>
+
+    <footer>
+        <div id="timer">
+            <span class="minutes">25</span>
+            <span>:</span>
+            <span class="seconds">00</span>
+        </div>
+        <div id="text">
+            <span>**** Este site é apenas um teste! A estlização não é nada profissional, foi criado para testar conhecimentos em javascript ****</span>
+        </div>
+    </footer>
+</body>
+</html>
