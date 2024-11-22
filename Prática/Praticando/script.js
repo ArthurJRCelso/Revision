@@ -1,4 +1,7 @@
+
+import { start } from './js/timer/index.js'
 import sitePage from './main.js'
+
 
 
 
@@ -14,5 +17,7 @@ document.querySelectorAll('a').forEach(link => {
     })
 })
 
+
+start()
 sitePage.handle()
 

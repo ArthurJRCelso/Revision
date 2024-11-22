@@ -1,3 +1,6 @@
+import { buttonItems } from "./js/buy.js"
+
+
 
 export class singlePage {
 
@@ -23,11 +26,13 @@ export class singlePage {
             .then(data => data.text())
             .then(html => {
                 document.querySelector('#app').innerHTML = html
-                
+                buttonItems()
             })
-
-        
+           
+            
     }
+
+
 }
 
 const sitePage = new singlePage()
