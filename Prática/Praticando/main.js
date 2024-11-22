@@ -9,10 +9,10 @@ export class singlePage {
 
     route(event) {
         event.preventDefault()
-
+        
         window.history.pushState({}, "", event.target.href)
 
-        this.handle
+        this.handle()
 
     }
     
