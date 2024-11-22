@@ -29,3 +29,6 @@ export class singlePage {
         
     }
 }
+
+const sitePage = new singlePage()
+export default sitePage

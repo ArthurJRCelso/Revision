@@ -41,7 +41,7 @@ function handle() {
 }
 
 function toggleLink(data) {
-    const body = document.querySelector('#body')
+    const body = document.querySelector('body')
     const app = document.querySelector('#app')
     const dataRoute = Routes[data] || Routes[404]
 

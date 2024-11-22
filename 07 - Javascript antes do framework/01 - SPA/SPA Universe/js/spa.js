@@ -45,7 +45,7 @@ export class Router {
         }
 
         toggleImage(image) {
-            const body = document.querySelector('body')
+            const body = document.querySelector('#body')
             const routeImg = this.listClass[image]
             if(routeImg) {
                 body.className = routeImg.routeImage
