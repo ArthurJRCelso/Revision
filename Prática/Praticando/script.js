@@ -1,17 +1,20 @@
 
 import { singlePage } from "./main.js";
 
-const site = new singlePage()
+const sitePage = new singlePage()
 
-site.add('/', '/pages/home.html')
-site.add('/buy', '/pages/buy.html')
-site.add('/imc', '/pages/imc.html')
-site.add('/contact', '/pages/contact.html')
-
-
-
+sitePage.add('/', '/pages/home.html')
+sitePage.add('/buy', '/pages/buy.html')
+sitePage.add('/imc', '/pages/imc.html')
+sitePage.add('/contact', '/pages/contact.html')
+sitePage.add(404, "/pages/404.html")
 
 
 
-window.route = () => site.route()
-site.handle()
+
+
+sitePage.handle()
+
+
+
+window.route = () => sitePage.route(event)

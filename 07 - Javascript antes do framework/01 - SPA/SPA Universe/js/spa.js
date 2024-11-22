@@ -1,7 +1,7 @@
 export class Router {
-
+    
     listClass = {
-        '/home': {
+        '/': {
             routeImage: 'home'
         },
 
@@ -31,21 +31,29 @@ export class Router {
     
     handle() {
         const { pathname } = window.location
+        console.log(pathname)
         const page = this.Routes[pathname] || this.Routes[404]
 
         fetch(page)
             .then(data => data.text())
             .then(html => {
                 document.querySelector('#app').innerHTML = html
+                this.toggleImage(pathname)
             })
 
-            this.toggleImage(pathname)
         
         }
 
         toggleImage(image) {
-            const body = document.querySelector('.body')
+            const body = document.querySelector('body')
             const routeImg = this.listClass[image]
-            body.className = routeImg.routeImage
+            if(routeImg) {
+                body.className = routeImg.routeImage
+            } else {
+                console.warn('No routeImage found')
+            }
         }
     }
+
+    const router = new Router()
+    export default router
