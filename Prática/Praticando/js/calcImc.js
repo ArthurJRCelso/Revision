@@ -14,7 +14,6 @@ export function handleCalcImc() {
         const height = inputHeight.value
 
         const inputNotANumber = notANumber(weight) || notANumber(height)
-        console.log(inputNotANumber)
 
         if(inputNotANumber) {
             alert('Digite um valor válido!')
@@ -29,6 +28,16 @@ export function handleCalcImc() {
         toggle()
     })
 
+}
+
+export function handleReset(e) {
+    const buttonReset = document.querySelector('#reset')
+    buttonReset.addEventListener('click', (event) => {
+        event.preventDefault()
+        toggle()
+        inputWeight.value = ''
+        inputHeight.value = ''
+    })
 }
 
 function calcIMC(weight, height) {

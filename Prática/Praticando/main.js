@@ -1,5 +1,5 @@
 import { buttonItems } from "./js/buy.js"
-import { handleCalcImc } from "./js/calcImc.js"
+import { handleCalcImc, handleReset } from "./js/calcImc.js"
 
 
 
@@ -32,6 +32,7 @@ export class singlePage {
                     buttonItems()
                 } else if (pathname == '/imc') {
                     handleCalcImc()
+                    handleReset()
                 }
             })
            
