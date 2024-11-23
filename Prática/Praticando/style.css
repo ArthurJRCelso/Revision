@@ -94,7 +94,7 @@ a {
 
 /* Comprar */
 
-.mainBuy {
+.container {
     display: flex;
     place-content: center;
     flex-direction: column;
@@ -102,7 +102,7 @@ a {
     margin: 2rem auto;
 }
 
-.buyTitle, .imcTitle {
+.buyTitle, .imcTitle, .mediaTitle {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: mediumblue;
 }
@@ -131,7 +131,7 @@ form {
     border: none;
 }
 
-.addItem, .calcImc {
+button {
     width: 10rem;
     background-color: yellow;
     border: none;
@@ -152,16 +152,7 @@ form {
 
 /* IMC */
 
-.containerImc {
-    display: flex;
-    place-content: center;
-    flex-direction: column;
-    width: 30rem;
-    margin: 2rem auto;
-
-}
-
-.containerImc h1 {
+.imcTitle {
     margin-bottom: 2rem;
 }
 
@@ -172,7 +163,7 @@ form {
     border: none;
 }
 
-.input-wrapper + .input-wrapper {
+.imc + .imc {
     margin: 1rem 0;
 }
 
@@ -188,6 +179,62 @@ form {
     display: none;
     visibility: hidden;
     opacity: none;
+}
+
+/* Media */
+
+.mediaTitle {
+    margin-bottom: 2rem;
+}
+
+.formMedia {
+    display: flex;
+    gap: 1rem;
+}
+
+.modalMedia {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+
+    display: grid;
+    place-content: center;
+
+    opacity: 0;
+    visibility: hidden;
+}
+
+.card {
+    padding: 4.8rem 6.4rem 6.4rem;
+    background-color: white;
+    max-width: 42.8rem;
+    margin-inline: auto;
+
+    box-shadow: 0 .2rem .4rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.6rem;
+
+    position: relative;
+}
+
+.card button {
+    background: none;
+    border: none;
+
+    position: absolute;
+    top: 1.6rem;
+    right: 1.6rem;
+    margin: 0;
+
+    cursor: pointer;
+
+    transition: transform .3s;
+}
+
+
+
+.modalMedia.open {
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Contact */

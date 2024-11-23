@@ -1,5 +1,6 @@
 import { buttonItems } from "./js/buy.js"
 import { handleCalcImc, handleReset } from "./js/calcImc.js"
+import { handleMedia } from "./js/calcMedia.js"
 
 
 
@@ -30,9 +31,13 @@ export class singlePage {
                 
                 if(pathname == '/buy') {
                     buttonItems()
+
                 } else if (pathname == '/imc') {
                     handleCalcImc()
                     handleReset()
+                    
+                } else if (pathname == '/media') {
+                    handleMedia()
                 }
             })
            
