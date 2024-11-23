@@ -1,9 +1,6 @@
 
-import { start } from './js/timer/index.js'
+import { countdown } from './js/timer/index.js'
 import sitePage from './main.js'
-
-
-
 
 sitePage.add('/', '/pages/home.html')
 sitePage.add('/buy', '/pages/buy.html')
@@ -18,6 +15,6 @@ document.querySelectorAll('a').forEach(link => {
 })
 
 
-start()
+countdown()
 sitePage.handle()
 

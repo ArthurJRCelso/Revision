@@ -1,4 +1,5 @@
 import { buttonItems } from "./js/buy.js"
+import { handleCalcImc } from "./js/calcImc.js"
 
 
 
@@ -26,7 +27,12 @@ export class singlePage {
             .then(data => data.text())
             .then(html => {
                 document.querySelector('#app').innerHTML = html
-                buttonItems()
+                
+                if(pathname == '/buy') {
+                    buttonItems()
+                } else if (pathname == '/imc') {
+                    handleCalcImc()
+                }
             })
            
             
