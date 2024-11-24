@@ -131,7 +131,7 @@ form {
     border: none;
 }
 
-button {
+.addItem, .calcImc, #reset, .buttonMedia {
     width: 10rem;
     background-color: yellow;
     border: none;
@@ -192,6 +192,10 @@ button {
     gap: 1rem;
 }
 
+.textModal {
+    font-size: 1.6rem;
+}
+
 .modalMedia {
     position: absolute;
     inset: 0;
@@ -205,7 +209,7 @@ button {
 }
 
 .card {
-    padding: 4.8rem 6.4rem 6.4rem;
+    padding: 4.8rem 6.4rem 4.8rem;
     background-color: white;
     max-width: 42.8rem;
     margin-inline: auto;
@@ -216,7 +220,7 @@ button {
     position: relative;
 }
 
-.card button {
+.close {
     background: none;
     border: none;
 

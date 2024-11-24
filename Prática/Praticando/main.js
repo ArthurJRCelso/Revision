@@ -1,6 +1,6 @@
 import { buttonItems } from "./js/buy.js"
 import { handleCalcImc, handleReset } from "./js/calcImc.js"
-import { handleMedia } from "./js/calcMedia.js"
+import * as media from "./js/calcMedia.js"
 
 
 
@@ -37,7 +37,7 @@ export class singlePage {
                     handleReset()
                     
                 } else if (pathname == '/media') {
-                    handleMedia()
+                    media.handleMedia()
                 }
             })
            
