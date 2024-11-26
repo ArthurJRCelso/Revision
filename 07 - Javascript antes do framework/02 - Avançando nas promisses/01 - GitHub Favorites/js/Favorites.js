@@ -7,20 +7,16 @@ class Favorites {
     }
 
     load() {
-        this.entries = [
-            {
-            login: 'ArthurJRCelso',
-            name: 'Arthur Rodrigues',
-            public_repos: '31',
-            followers: '78965'
-           },
-           {
-            login: 'maykbrito',
-            name: 'Mayk Brito',
-            public_repos: '76',
-            followers: '120000'
-           }
-        ]
+        this.entries = JSON.parse(localStorage.getItem
+            ('@github-favorites:')) || []
+    }
+
+    delete(user) {
+        const filteredEntries = this.entries.filter(entry => 
+            user.login !== entry.login)
+
+            this.entries = filteredEntries
+            this.update()
     }
 }
 
@@ -49,7 +45,13 @@ export class FavoritesView extends Favorites {
 
             this.tbody.append(row)
 
-            
+            row.querySelector('.remove').onclick = () => {
+                const isOk = confirm('Tem certeza que deseja remover?')
+
+                if(isOk) {
+                    this.delete(user)
+                }
+            }
      })
        
     }
