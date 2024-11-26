@@ -48,6 +48,8 @@ export class FavoritesView extends Favorites {
             row.querySelector('.followers').textContent = user.followers
 
             this.tbody.append(row)
+
+            
      })
        
     }
