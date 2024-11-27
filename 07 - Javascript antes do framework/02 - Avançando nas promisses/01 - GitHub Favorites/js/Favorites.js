@@ -1,25 +1,22 @@
-export class GithubUser {
+class GithubUser {
     static search(username) {
         const endpoint = `https://api.github.com/users/${username}`
 
         return fetch(endpoint)
-        .then(data => data.json())
-        .then(({ login, name, public_repos, followers }) => ({
-            login,
-            name,
-            public_repos,
-            followers
-        }))
+            .then(data => data.json())
+            .then(({ name, login, public_repos, followers }) => ({
+                name,
+                login,
+                public_repos,
+                followers
+            }))
     }
 }
-// classe que vai conter a lógica dos dados
-// como os dados serão estruturados
+
 class Favorites {
     constructor(root) {
         this.root = document.querySelector(root)
         this.load()
-
-        GithubUser.search('ArthurJRCelso').then(user => console.log(user))
     }
 
     load() {
@@ -27,20 +24,39 @@ class Favorites {
             ('@github-favorites:')) || []
     }
 
+    save() {
+        localStorage.setItem('@github-favorites:', JSON.stringify(this.entries))
+    }
+
     async add(username) {
-        const user = await GithubUser.search(username)
+        try {
+            const user = await GithubUser.search(username)
+
+            if(user.login == undefined) {
+                throw new Error('Usuário não encontrado!')
+            }
+
+            this.entries = [user, ...this.entries]
+            this.update()
+            this.save()
+
+        } catch(error) {
+            alert(error.message)
+        }
+
+
     }
 
     delete(user) {
-        const filteredEntries = this.entries.filter(entry => 
+        const filteredEntries = this.entries.filter(entry =>
             user.login !== entry.login)
 
-            this.entries = filteredEntries
-            this.update()
+        this.entries = filteredEntries
+        this.update()
+        this.save()
     }
 }
 
-// classe que vai criar a visualização e eventos do html
 export class FavoritesView extends Favorites {
     constructor(root) {
         super(root)
@@ -55,7 +71,7 @@ export class FavoritesView extends Favorites {
         const addButton = this.root.querySelector('.search button')
         addButton.onclick = () => {
             const { value } = this.root.querySelector('.search input')
-
+            
             this.add(value)
         }
     }
@@ -63,7 +79,7 @@ export class FavoritesView extends Favorites {
     update() {
         this.removeAllTr()
 
-        this.entries.forEach( user => {
+        this.entries.forEach(user => {
             const row = this.createRow()
 
             row.querySelector('.user img').src = `https://github.com/${user.login}.png`
@@ -76,19 +92,21 @@ export class FavoritesView extends Favorites {
             this.tbody.append(row)
 
             row.querySelector('.remove').onclick = () => {
-                const isOk = confirm('Tem certeza que deseja remover?')
+                const isOK = confirm('Tem certeza que deseja excluir?')
 
-                if(isOk) {
+                if(isOK) {
                     this.delete(user)
                 }
             }
-     })
-       
+        }
+            
+        )
+
     }
 
     createRow() {
         const tr = document.createElement('tr')
-
+        
         tr.innerHTML = `
                     <td class="user">
                         <img src="https://github.com/ArthurJRCelso.png" alt="">
@@ -113,7 +131,7 @@ export class FavoritesView extends Favorites {
 
     removeAllTr() {
         this.tbody.querySelectorAll('tr')
-            .forEach((tr) => {
+            .forEach(tr => {
                 tr.remove()
             })
     }
