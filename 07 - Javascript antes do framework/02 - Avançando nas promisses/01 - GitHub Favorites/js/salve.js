@@ -16,6 +16,7 @@ class GithubUser {
 class Favorites {
     constructor(root) {
         this.root = document.querySelector(root)
+
         this.load()
     }
 
@@ -30,6 +31,12 @@ class Favorites {
 
     async add(username) {
         try {
+            const userExists = this.entries.find(entry => entry.login == username)
+
+            if(userExists) {
+                throw new Error('Usuário já cadastrado!')
+            }
+            
             const user = await GithubUser.search(username)
 
             if(user.login == undefined) {
@@ -40,14 +47,15 @@ class Favorites {
             this.update()
             this.save()
 
-        } catch(error) {
-            alert(error.message)
+        } catch(e) {
+            alert(e.message)
         }
     }
 
     delete(user) {
         const filteredEntries = this.entries.filter(entry =>
-            user.login !== entry.login)
+            user.login !== entry.login
+        )
 
         this.entries = filteredEntries
         this.update()
@@ -58,28 +66,28 @@ class Favorites {
 export class FavoritesView extends Favorites {
     constructor(root) {
         super(root)
-
+        
         this.tbody = this.root.querySelector('table tbody')
-
+        
         this.update()
         this.onadd()
     }
 
     onadd() {
         const addButton = this.root.querySelector('.search button')
+        
         addButton.onclick = () => {
             const { value } = this.root.querySelector('.search input')
-            
             this.add(value)
         }
     }
-
+    
     update() {
         this.removeAllTr()
-
+        
         this.entries.forEach(user => {
             const row = this.createRow()
-
+            
             row.querySelector('.user img').src = `https://github.com/${user.login}.png`
             row.querySelector('.user img').alt = `Imagem de ${user.name}`
             row.querySelector('.user p').textContent = user.name
@@ -87,24 +95,21 @@ export class FavoritesView extends Favorites {
             row.querySelector('.repositories').textContent = user.public_repos
             row.querySelector('.followers').textContent = user.followers
 
-            this.tbody.append(row)
-
             row.querySelector('.remove').onclick = () => {
-                const isOK = confirm('Tem certeza que deseja excluir?')
-
-                if(isOK) {
+                const isOk = confirm('Tem certeza que deseja remover?')
+                if(isOk) {
                     this.delete(user)
                 }
             }
-        }
-            
-        )
+
+            this.tbody.append(row)
+        })
 
     }
 
     createRow() {
         const tr = document.createElement('tr')
-        
+
         tr.innerHTML = `
                     <td class="user">
                         <img src="https://github.com/ArthurJRCelso.png" alt="">
@@ -121,10 +126,9 @@ export class FavoritesView extends Favorites {
                     </td>
                     <td>
                         <button class="remove">&times;</button>
-                    </td>
-       `
+                    </td>`
 
-       return tr
+        return tr
     }
 
     removeAllTr() {

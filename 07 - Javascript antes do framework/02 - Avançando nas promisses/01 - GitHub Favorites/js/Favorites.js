@@ -21,8 +21,7 @@ class Favorites {
     }
 
     load() {
-        this.entries = JSON.parse(localStorage.getItem
-            ('@github-favorites:')) || []
+        this.entries = JSON.parse(localStorage.getItem('@github-favorites:')) || []
     }
 
     save() {
@@ -31,12 +30,15 @@ class Favorites {
 
     async add(username) {
         try {
-            const userExists = this.entries.find(entry => entry.login == username)
+            const userExists = this.entries.find(user => 
+                user.login == username
+            )
 
             if(userExists) {
                 throw new Error('Usuário já cadastrado!')
+                return
             }
-            
+
             const user = await GithubUser.search(username)
 
             if(user.login == undefined) {
@@ -44,16 +46,16 @@ class Favorites {
             }
 
             this.entries = [user, ...this.entries]
-            this.update()
             this.save()
-
-        } catch(e) {
-            alert(e.message)
+            this.update()
+            
+        } catch(error) {
+            alert(error.message)
         }
     }
 
     delete(user) {
-        const filteredEntries = this.entries.filter(entry =>
+        const filteredEntries = this.entries.filter(entry => 
             user.login !== entry.login
         )
 
@@ -75,7 +77,7 @@ export class FavoritesView extends Favorites {
 
     onadd() {
         const addButton = this.root.querySelector('.search button')
-        
+
         addButton.onclick = () => {
             const { value } = this.root.querySelector('.search input')
             this.add(value)
@@ -95,16 +97,17 @@ export class FavoritesView extends Favorites {
             row.querySelector('.repositories').textContent = user.public_repos
             row.querySelector('.followers').textContent = user.followers
 
+            this.tbody.append(row)
+
             row.querySelector('.remove').onclick = () => {
                 const isOk = confirm('Tem certeza que deseja remover?')
+
                 if(isOk) {
                     this.delete(user)
                 }
             }
 
-            this.tbody.append(row)
         })
-
     }
 
     createRow() {
