@@ -30,8 +30,8 @@ class Favorites {
 
     async add(username) {
         try {
-            const userExists = this.entries.find(user => 
-                user.login == username
+            const userExists = this.entries.find(entry => 
+                username == entry.login
             )
 
             if(userExists) {
@@ -44,11 +44,9 @@ class Favorites {
             if(user.login == undefined) {
                 throw new Error('Usuário não encontrado!')
             }
-
             this.entries = [user, ...this.entries]
-            this.save()
             this.update()
-            
+            this.save()
         } catch(error) {
             alert(error.message)
         }
@@ -68,28 +66,27 @@ class Favorites {
 export class FavoritesView extends Favorites {
     constructor(root) {
         super(root)
-        
         this.tbody = this.root.querySelector('table tbody')
-        
+
         this.update()
         this.onadd()
     }
 
     onadd() {
         const addButton = this.root.querySelector('.search button')
-
-        addButton.onclick = () => {
-            const { value } = this.root.querySelector('.search input')
-            this.add(value)
-        }
+            addButton.onclick = () => {
+                const { value } = this.root.querySelector('.search input')
+                
+                this.add(value)
+            }
     }
-    
+
     update() {
         this.removeAllTr()
-        
+
         this.entries.forEach(user => {
             const row = this.createRow()
-            
+
             row.querySelector('.user img').src = `https://github.com/${user.login}.png`
             row.querySelector('.user img').alt = `Imagem de ${user.name}`
             row.querySelector('.user p').textContent = user.name
@@ -106,8 +103,8 @@ export class FavoritesView extends Favorites {
                     this.delete(user)
                 }
             }
-
         })
+
     }
 
     createRow() {
@@ -133,7 +130,7 @@ export class FavoritesView extends Favorites {
 
         return tr
     }
-
+    
     removeAllTr() {
         this.tbody.querySelectorAll('tr')
             .forEach(tr => {
