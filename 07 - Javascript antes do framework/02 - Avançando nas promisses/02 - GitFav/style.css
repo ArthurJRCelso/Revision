@@ -5,48 +5,43 @@
 }
 
 :root {
-    font-size: clamp(10%, 1% + .9vw, 62.5%);
+    font-size: 62.5%;
 }
 
 body {
     font-size: 1.6rem;
     background-color: #000000;
-    padding: 11.5rem 16rem;
     color: white;
-   
+
+    font-family: "Roboto", sans-serif;
 }
 
 .sr-only {
     position: absolute;
     width: 1px;
     height: 1px;
-    padding: 0;
     margin: -1px;
+    padding: 0;
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-    visibility: none;
+    border: 0;
 }
 
 #app {
-    margin: 0 auto;
     padding: 2rem;
-    width: 100%;
+    margin: 11.5rem auto;
+    max-width: 1120px;
+    display: grid;
+    place-content: center;
 }
 
 header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
+    gap: 29.3rem;
 
     margin-bottom: 8.7rem;
-}
-
-header img {
-    width: 19.4rem;
-    height: 3.2rem;
 }
 
 form {
@@ -54,77 +49,123 @@ form {
     gap: .8rem;
 }
 
-form input {
-    background-color: #06181C;
-    color: white;
+header input {
     width: 46.2rem;
     height: 4.8rem;
-    padding-left: 1.6rem;
+
     border: none;
     border-radius: .5rem;
-}
 
-form input::placeholder {
-    font-size: 1.6rem;
+    background-color: #06181C;
+    color: white;
+    padding: 1.6rem;
 }
 
 header button {
     background-image: url(assets/star.svg);
     background-repeat: no-repeat;
-    background-position: left 3rem center;
-    background-size: 2.4rem 2.4rem;
-    
-    padding-left: 4rem;
-    padding: 1.2rem 6.4rem;
-    font-size: 1.4rem;
-    font-weight: bold;
-
-    text-transform: uppercase;
-    border-radius: .5rem;
-    border: none;
-    color: white;
-
+    background-position: center left 1.2rem;
+    padding: 1.2rem 3.2rem 1.2rem 4.4rem;
     background-color: #065E7C;
-    width: 17rem;
-    height: 4.8rem;
-    line-height: 1.2rem;
-
+    border: none;
+    border-radius: .5rem;
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+    font-weight: bold;
     cursor: pointer;
     transition: .3s;
 }
 
 header button:hover {
     background-image: url(assets/starhover.svg);
-    background-repeat: no-repeat;
-    background-position: left 3rem center;
-    background-size: 2.4rem 2.4rem;
-    color: #065E7C;
     background-color: white;
+    color: #065E7C;
 }
 
 table {
-    margin: auto;
-    width: 100%;
-}
-
-table tr {
+    border-collapse: collapse;
     text-align: left;
 }
 
-table tbody .user {
+table thead th{
+    background-color: #092D38;
+    font-size: 2rem;
+    padding: 1.6rem 0 1.6rem 4rem;
+}
+
+table thead th:first-child {
+    border-top-left-radius: 1.2rem;
+    width: 50.4rem;
+}
+
+table thead th:last-child {
+    border-top-right-radius: 1.2rem;
+}
+
+table tr {
+    background-color: #06181C;
+}
+
+table tr:nth-child(odd) {
+    background-color: #000607;
+}
+
+tbody tr td {
+    padding-left: 4rem;
+}
+
+tbody tr {
+    border: 1px solid #4A808C;
+}
+
+tr .user {
+    padding: 2.8rem 4rem;
+    width: 50rem;
     display: flex;
     gap: 1.6rem;
     align-items: center;
-    width: 50rem;
 }
 
-table tbody .repositories {
-    
+tr p {
+    font-weight: bold;
 }
 
-table tbody img {
-    border-radius: 50%;
+tr .user a {
+    text-decoration: none;
+    color: white;
+    font-size: 2rem;
+}
+
+tr .user img {
     width: 5.6rem;
     height: 5.6rem;
+    border-radius: 50%;
 }
 
+tbody tr td .remove {
+    text-decoration: none;
+    color: #F75A68;
+}
+
+.quote {
+    justify-content: center;
+    padding: 21rem 0;
+    display: flex;
+    align-items: center;
+    gap: 6rem;
+}
+
+.quote p {
+    font-size: 4rem;
+    font-weight: bold;
+    line-height: 2.4rem;
+    font-family: "Roboto Mono", monospace;
+    color: #4E5455;
+
+}
+
+.hide {
+    display: none;
+}
