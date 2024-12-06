@@ -11,7 +11,7 @@ btnReset.addEventListener('click', handleReset)
 document.addEventListener('keydown', handleKey)
 
 function handleTry(event) {
-    event.preventDefault(event)
+    event.preventDefault()
     
     if (input.value == "" || input.value < 1 || input.value > 10) {
         alert("Valor inválido!")
