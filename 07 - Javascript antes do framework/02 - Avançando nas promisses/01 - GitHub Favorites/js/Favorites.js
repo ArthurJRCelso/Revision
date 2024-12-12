@@ -13,7 +13,7 @@ class GithubUser {
     }
 }
 
-class Favorites {
+export class Favorites {
     constructor(root) {
         this.root = document.querySelector(root)
 
@@ -30,9 +30,7 @@ class Favorites {
 
     async add(username) {
         try {
-            const userExists = this.entries.find(entry => 
-                username == entry.login
-            )
+            const userExists = this.entries.find(user => user.login == username)
 
             if(userExists) {
                 throw new Error('Usuário já cadastrado!')
@@ -47,16 +45,15 @@ class Favorites {
             this.entries = [user, ...this.entries]
             this.update()
             this.save()
+
         } catch(error) {
             alert(error.message)
         }
     }
 
     delete(user) {
-        const filteredEntries = this.entries.filter(entry => 
-            user.login !== entry.login
-        )
-
+        const filteredEntries = this.entries.filter(entry => user.login !== entry.login)
+        
         this.entries = filteredEntries
         this.update()
         this.save()
@@ -66,19 +63,11 @@ class Favorites {
 export class FavoritesView extends Favorites {
     constructor(root) {
         super(root)
+        
         this.tbody = this.root.querySelector('table tbody')
 
         this.update()
         this.onadd()
-    }
-
-    onadd() {
-        const addButton = this.root.querySelector('.search button')
-            addButton.onclick = () => {
-                const { value } = this.root.querySelector('.search input')
-                
-                this.add(value)
-            }
     }
 
     update() {
@@ -97,14 +86,22 @@ export class FavoritesView extends Favorites {
             this.tbody.append(row)
 
             row.querySelector('.remove').onclick = () => {
-                const isOk = confirm('Tem certeza que deseja remover?')
+                const isOk = confirm('Tem certeza que deseja excluir este usuário?')
 
                 if(isOk) {
                     this.delete(user)
                 }
             }
         })
+    }
 
+    onadd() {
+        const addButton = this.root.querySelector('button')
+        addButton.onclick = () => {
+            const { value } = this.root.querySelector('input')
+            
+            this.add(value)
+        }
     }
 
     createRow() {
@@ -128,13 +125,13 @@ export class FavoritesView extends Favorites {
                         <button class="remove">&times;</button>
                     </td>`
 
-        return tr
+            return tr
     }
-    
+
     removeAllTr() {
         this.tbody.querySelectorAll('tr')
             .forEach(tr => {
                 tr.remove()
-            })
+        })
     }
 }
