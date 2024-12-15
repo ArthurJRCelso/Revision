@@ -31,7 +31,6 @@ export class Router {
     
     handle() {
         const { pathname } = window.location
-        console.log(pathname)
         const page = this.Routes[pathname] || this.Routes[404]
 
         fetch(page)
