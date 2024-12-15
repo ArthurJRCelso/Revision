@@ -1,4 +1,4 @@
-import { Route } from "../spa.js";
+import { Route } from "./spa.js";
 
 const route = new Route()
 

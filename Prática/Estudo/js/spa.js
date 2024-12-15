@@ -1,3 +1,5 @@
+import { addItems } from "./items.js"
+
 export class Route {
 
     Router = {}
@@ -20,8 +22,11 @@ export class Route {
 
         fetch(page)
             .then(link => link.text())
-            .then(html => 
+            .then(html => {
                 document.querySelector('#app').innerHTML = html
-            )
+                    if(pathname == '/buy') {
+                        addItems()
+                    }
+            })
     }
 }
