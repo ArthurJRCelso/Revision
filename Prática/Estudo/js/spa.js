@@ -1,4 +1,5 @@
 import { addItems } from "./items.js"
+import { calcIMC } from "./imc.js"
 
 export class Route {
 
@@ -26,7 +27,11 @@ export class Route {
                 document.querySelector('#app').innerHTML = html
                     if(pathname == '/buy') {
                         addItems()
+                    } else if(pathname == '/imc') {
+                        calcIMC()
                     }
+
+                    
             })
     }
 }
