@@ -3,18 +3,14 @@ let inputMinutes = document.querySelector('.minutes')
 let inputSeconds = document.querySelector('.seconds')
 
 export function cowntdown() {
-    let minutes = Number(inputMinutes).textContent
-    let seconds = Number(inputSeconds).textContent
+    let minutes = Number(inputMinutes.textContent)
+    let seconds = Number(inputSeconds.textContent)
 
-    seconds--
+    seconds++
 
-    if (seconds < 0) {
-        seconds = 59
-        minutes--
-    }
-
-    if (minutes < 0) {
-        return
+    if (seconds > 59) {
+        seconds = 0
+        minutes++
     }
 
     updateDisplay(minutes, seconds)
