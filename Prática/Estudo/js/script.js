@@ -16,3 +16,4 @@ document.querySelectorAll('a').forEach(link => {
 })
 
 route.handle()
+window.onpopstate = () => route.handle()
