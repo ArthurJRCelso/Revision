@@ -1,4 +1,5 @@
 import { Route } from "./spa.js";
+import { cowntdown } from "./timer.js"
 
 const route = new Route()
 
@@ -14,6 +15,8 @@ document.querySelectorAll('a').forEach(link => {
         route.route(event)
     })
 })
+
+cowntdown()
 
 route.handle()
 window.onpopstate = () => route.handle()
