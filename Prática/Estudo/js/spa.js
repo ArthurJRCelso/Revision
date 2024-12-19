@@ -1,5 +1,6 @@
 import { addItems } from "./items.js"
 import { calcIMC } from "./imc.js"
+import { handleMedia } from "./media.js"
 
 export class Route {
 
@@ -25,10 +26,12 @@ export class Route {
             .then(link => link.text())
             .then(html => {
                 document.querySelector('#app').innerHTML = html
-                    if(pathname == '/buy') {
+                    if (pathname == '/buy') {
                         addItems()
-                    } else if(pathname == '/imc') {
+                    } else if (pathname == '/imc') {
                         calcIMC()
+                    } else if (pathname == '/media') {
+                        handleMedia()
                     }
 
                     
