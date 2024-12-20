@@ -257,3 +257,61 @@ form {
     color: blue;
 }
 
+#app {
+    display: grid;
+    place-content: center;
+    margin-top: 6rem;
+}
+
+#app h1 {
+    margin: 2rem 0;
+}
+
+.search {
+    display: flex;
+    gap: .4rem;
+}
+
+.buttonFav {
+    padding: 0 .5rem;
+    border-radius: .5rem;
+    border: none;
+    cursor: pointer;
+}
+
+#input-search {
+    width: 100%;
+    padding: .5rem;
+    border-radius: .5rem;
+    border: none;
+}
+
+table {
+    margin-top: 2rem;
+}
+
+table thead th {
+    text-align: left;
+    padding-right: 3rem;
+}
+
+table tbody .user {
+    display: flex;
+    align-items: center;
+}
+
+table tbody .user img {
+    border-radius: 999px;
+    width: 6rem;
+    height: 6rem;
+}
+
+.remove {
+    background: none;
+    border: none;
+    color: red;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+

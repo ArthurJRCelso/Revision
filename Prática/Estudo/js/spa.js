@@ -1,6 +1,7 @@
 import { addItems } from "./items.js"
 import { calcIMC } from "./imc.js"
 import { handleMedia } from "./media.js"
+import { FavoritesView } from "./githubFav.js"
 
 export class Route {
 
@@ -32,6 +33,8 @@ export class Route {
                         calcIMC()
                     } else if (pathname == '/media') {
                         handleMedia()
+                    } else if (pathname == '/github') {
+                        new FavoritesView('#app')
                     }
 
                     
