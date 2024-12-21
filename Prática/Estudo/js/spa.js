@@ -27,16 +27,26 @@ export class Route {
             .then(link => link.text())
             .then(html => {
                 document.querySelector('#app').innerHTML = html
-                    if (pathname == '/buy') {
-                        addItems()
-                    } else if (pathname == '/imc') {
-                        calcIMC()
-                    } else if (pathname == '/media') {
-                        handleMedia()
-                    } else if (pathname == '/github') {
-                        new FavoritesView('#app')
-                    }
+                    
+                    switch (pathname) {
 
+                        case '/buy': 
+                            addItems()
+                        break;
+
+                        case '/imc':
+                            calcIMC()
+                        break;
+
+                        case '/media':
+                            handleMedia()
+                        break;
+
+                        case '/github':
+                            new FavoritesView('#app')
+                        break;
+                    }
+                    
                     
             })
     }
