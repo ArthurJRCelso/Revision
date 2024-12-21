@@ -9,6 +9,11 @@ export function addItems() {
 
         li.textContent = value
 
-        listItems.append(li)
+        if (value == '') {
+            alert('Digite um item!')
+        } else {
+            listItems.append(li)
+        }
+
     })
 }

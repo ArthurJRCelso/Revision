@@ -19,7 +19,12 @@ export function handleMedia() {
         const thirdNote = parseFloat(noteThree.value)
         const dataName = name.value
 
-        console.log(firstNote)
+        const test = testValue(firstNote) || testValue(secondNote) || testValue(thirdNote) || testValue(dataName)
+
+        if (test) {
+            alert('Preencha todos os campos!')
+            return
+        }
 
         const media = calcMedia(firstNote, secondNote, thirdNote)
         const message = `Olá ${dataName}, sua média é de ${media}`
@@ -27,6 +32,10 @@ export function handleMedia() {
 
         handleModal()
         
+    }
+
+    function testValue(value) {
+        return isNaN(value) || value == ''
     }
 
     function handleEsc(e) {
