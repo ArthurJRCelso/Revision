@@ -101,6 +101,11 @@ export class FavoritesView extends Favorites {
         addButton.onclick = () => {
             const { value } = this.root.querySelector('#input-search')
 
+            if (value == '') {
+                alert('Digite o nome do usuário!')
+                return
+            }
+
             this.add(value)
         }
     }
